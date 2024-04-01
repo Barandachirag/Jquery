@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- • How to create slider with animation? -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .slider-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 20%; 
+   margin: 0 auto;
+}
+
+.slider {
+  display: flex;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 60%;
+  text-align: center;
+  padding: 20px;
+  background-color: #eee; 
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev {
+  left: 10px;
+  font-size: 100px;
+  background-color: transparent;
+  border: none;
+ 
+}
+
+.next {
+  right: 10px;
+  font-size: 100px;
+  background-color: transparent;
+  border: none;
+}
+
+
+    </style>
+
+    
+
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slider">
+          <div class="slide"><img src="./image/291463.jpg" alt="" ></div>
+          <div class="slide"><img src="./image/hd-a5u9zq0a0ymy2dug.jpg" alt=""></div>
+          <div class="slide"><img src="./image/nature-2ygv7ssy2k0lxlzu.jpg" alt="" ></div>
+          
+        </div>
+        <button class="prev"><span style="color: blue;"><</span></button>
+        <button class="next"><span style="color: blue;">></span></button>
+      </div>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      
+    </div>
+    <script>
+      $(document).ready(function() {
+  var slideWidth = $('.slide').outerWidth(); 
+  var slideCount = $('.slide').length; // 
+  var sliderWidth = slideWidth * slideCount; 
+
+  $('.slider').css('width', sliderWidth); 
+
+  $('.next').click(function() {
+    $('.slider').animate({
+      'margin-left': -slideWidth 
+    }, 500, function() {
+      $('.slider').append($('.slide:first')); 
+      $('.slider').css('margin-left', 0); 
+    });
+  });
+
+  $('.prev').click(function() {
+    $('.slider').prepend($('.slide:last')); 
+    $('.slider').css('margin-left', -slideWidth); 
+    $('.slider').animate({
+      'margin-left': 0 
+    }, 500);
+  });
+});
+
+    </script>
+    
+</body>
+</html>
